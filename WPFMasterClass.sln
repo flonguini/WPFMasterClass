@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWPF", "HelloWPF\HelloW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{7E35554F-0920-4E17-B814-7E3C61A48294}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopContactsApp", "DesktopContactsApp\DesktopContactsApp.csproj", "{DF7365B7-64C9-4750-8CFB-F16D17D06871}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7E35554F-0920-4E17-B814-7E3C61A48294}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E35554F-0920-4E17-B814-7E3C61A48294}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E35554F-0920-4E17-B814-7E3C61A48294}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF7365B7-64C9-4750-8CFB-F16D17D06871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF7365B7-64C9-4750-8CFB-F16D17D06871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF7365B7-64C9-4750-8CFB-F16D17D06871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF7365B7-64C9-4750-8CFB-F16D17D06871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
