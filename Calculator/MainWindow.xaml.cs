@@ -8,6 +8,7 @@ namespace Calculator
     public partial class MainWindow : Window
     {
         double _lastNumber, _result;
+        SelectedOperator _selectedOperator;
 
         public MainWindow()
         {
@@ -16,12 +17,31 @@ namespace Calculator
             AC.Click += AC_Click; //Define os eventos para os botões
             Invert.Click += Invert_Click;
             Percent.Click += Percent_Click;
-            Equal.Click += Equal_Click;
         }
 
         private void Equal_Click(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+
+            if (double.TryParse(Result.Text.ToString(), out double newNumber)) // Declaração do número novo dentro do argumento
+            {
+                switch (_selectedOperator)
+                {
+                    case SelectedOperator.Addition:
+                        _result = SimpleMath.Add(_lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Substraction:
+                        _result = SimpleMath.Substract(_lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Multiplication:
+                        _result = SimpleMath.Multiply(_lastNumber, newNumber);
+                        break;
+                    case SelectedOperator.Division:
+                        _result = SimpleMath.Divide(_lastNumber, newNumber);
+                        break;
+                }
+            }
+
+            Result.Text = $"{_result}";
         }
 
         private void Percent_Click(object sender, RoutedEventArgs e)
@@ -47,109 +67,68 @@ namespace Calculator
             Result.Text = "0";
         }
 
-        private void Button8_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int selectValue = 0;
+
+            if (sender == Button0)
+                selectValue = 0;
+            if (sender == Button1)
+                selectValue = 1;
+            if (sender == Button2)
+                selectValue = 2;
+            if (sender == Button3)
+                selectValue = 3;
+            if (sender == Button4)
+                selectValue = 4;
+            if (sender == Button5)
+                selectValue = 5;
+            if (sender == Button6)
+                selectValue = 6;
+            if (sender == Button7)
+                selectValue = 7;
+            if (sender == Button8)
+                selectValue = 8;
+            if (sender == Button9)
+                selectValue = 9;
+
             if (Result.Text.ToString() == "0")
-                Result.Text = "8";
+                Result.Text = $"{selectValue}";
             else
-                Result.Text = $"{Result.Text}8"; //$ Concatena strings
+                Result.Text = $"{Result.Text}{selectValue}"; //$ Concatena strings
         }
 
-        private void Button9_Click(object sender, RoutedEventArgs e)
+        private void Operation_Click(object sender, RoutedEventArgs e)
         {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "9";
-            else
-                Result.Text = $"{Result.Text}9"; //$ Concatena strings
-        }
-
-        private void Multiply_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button4_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "4";
-            else
-                Result.Text = $"{Result.Text}4"; //$ Concatena strings
-        }
-
-        private void Button5_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "5";
-            else
-                Result.Text = $"{Result.Text}5"; //$ Concatena strings
-        }
-
-        private void Button6_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "6";
-            else
-                Result.Text = $"{Result.Text}6"; //$ Concatena strings
-        }
-
-        private void Minus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button1_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "1";
-            else
-                Result.Text = $"{Result.Text}1"; //$ Concatena strings
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "2";
-            else
-                Result.Text = $"{Result.Text}2"; //$ Concatena strings
-        }
-
-        private void Button3_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "3";
-            else
-                Result.Text = $"{Result.Text}3"; //$ Concatena strings
-        }
-
-        private void Plus_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button0_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
+            if (double.TryParse(Result.Text.ToString(), out _lastNumber))
+            {
                 Result.Text = "0";
-            else
-                Result.Text = $"{Result.Text}0"; //$ Concatena strings
+            }
+
+            if (sender == Multiply)
+                _selectedOperator = SelectedOperator.Multiplication;
+            if (sender == Adition)
+                _selectedOperator = SelectedOperator.Addition;
+            if (sender == Divide)
+                _selectedOperator = SelectedOperator.Division;
+            if (sender == Minus)
+                _selectedOperator = SelectedOperator.Substraction;
         }
 
         private void ButtonDot_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Equal_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button7_Click(object sender, RoutedEventArgs e)
-        {
-            if (Result.Text.ToString() == "0")
-                Result.Text = "7";
+            if (Result.Text.ToString().Contains(","))
+            {
+                // Do Nothing
+            }
             else
-                Result.Text = $"{Result.Text}7"; //$ Concatena strings
+            {
+                if (double.TryParse(Result.Text, out _lastNumber))
+                {
+                    Result.Text = $"{_lastNumber},";
+                }
+            }
         }
+
     }
 }
