@@ -21,6 +21,7 @@ namespace Calculator
             if (number2 == 0)
             {
                 MessageBox.Show("Division by 0 is not suported", "Wrong operation", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return 0;
             }
             return number1 / number2;
         }
