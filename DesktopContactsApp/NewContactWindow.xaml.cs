@@ -1,18 +1,7 @@
 ﻿using DesktopContactsApp.Classes;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DesktopContactsApp
 {
@@ -36,14 +25,14 @@ namespace DesktopContactsApp
                 Phonenumber = phoneNumberTextBox.Text
             };
 
-            string databaseName = "Contacts.db";
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string databasePath = System.IO.Path.Combine(folderPath,databaseName);
+            
 
-            SQLiteConnection connection = new SQLiteConnection(databasePath);
-            connection.CreateTable<Contact>(); //Cria a tabela de contatos
-            connection.Insert(contact);
-            connection.Close();
+            using (var connection = new SQLiteConnection(App.databasePath)) // Objeto precisa implementar IDisposable Interface
+            {
+                connection.CreateTable<Contact>(); //Cria a tabela de contatos
+                connection.Insert(contact);
+            }
+
             this.Close();
         }
     }
