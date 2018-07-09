@@ -1,5 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using FruitAI.Classes;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
@@ -48,6 +51,12 @@ namespace FruitAI
                 {
                     content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(content_type);
                     var response = await client.PostAsync(url, content);
+
+                    var responseString = await response.Content.ReadAsStringAsync();
+
+                    List<Prediction> predictions = (JsonConvert.DeserializeObject<CustomVision>(responseString)).Predictions;
+
+                    PredictionsListView.ItemsSource = predictions;
                 }
             }
 
