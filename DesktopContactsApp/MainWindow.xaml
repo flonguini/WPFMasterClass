@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:DesktopContactsApp.Controls"
         xmlns:local="clr-namespace:DesktopContactsApp"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
@@ -13,7 +14,7 @@
             <ListView x:Name="ContactsListView" Margin="0,5,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        
+                        <uc:ContactControl Contact="{Binding}" /> <!-- Contac é a propriedade criada-->
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

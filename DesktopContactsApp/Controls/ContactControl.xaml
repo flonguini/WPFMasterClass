@@ -8,9 +8,9 @@
              d:DesignHeight="100" d:DesignWidth="300">
     <Grid Background="#AAE5E5E5">
         <StackPanel Margin="5">
-            <TextBlock FontSize="20" FontWeight="Bold" Text="Name Lastname" />
-            <TextBlock FontSize="15" Foreground="DodgerBlue" Text="fernando@email.com"/>
-            <TextBlock FontSize="15" FontStyle="Italic" Text="(11) 96199-2735"/>
+            <TextBlock FontSize="20" FontWeight="Bold" Text="Name Lastname" x:Name="nameTextBlock" />
+            <TextBlock FontSize="15" Foreground="DodgerBlue" Text="fernando@email.com" x:Name="emailTextBlock"/>
+            <TextBlock FontSize="15" FontStyle="Italic" Text="(11) 96199-2735" x:Name="celphoneTextBlock"/>
         </StackPanel>
     </Grid>
 </UserControl>
