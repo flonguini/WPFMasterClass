@@ -15,6 +15,7 @@ namespace DesktopContactsApp.Classes
         public string Email { get; set; }
         public string Phonenumber { get; set; }
 
+        //overide o método para exibir os valores
         public override string ToString()
         {
             return $"{Name} - {Email} - {Phonenumber}";
