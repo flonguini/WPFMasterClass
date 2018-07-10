@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Speech.Recognition;
+using System.Threading;
+using System.Windows;
 using System.Windows.Documents;
 
 namespace NotesApp.View
@@ -8,9 +12,30 @@ namespace NotesApp.View
     /// </summary>
     public partial class NotesWindow : Window
     {
+        SpeechRecognitionEngine recognizer;
         public NotesWindow()
         {
             InitializeComponent();
+
+            var currentCulture = (from r in SpeechRecognitionEngine.InstalledRecognizers()
+                                  where r.Culture.Equals(Thread.CurrentThread.CurrentCulture)
+                                  select r).FirstOrDefault();
+            recognizer = new SpeechRecognitionEngine(currentCulture);
+
+            GrammarBuilder builder = new GrammarBuilder();
+            builder.AppendDictation();
+            Grammar grammaer = new Grammar(builder);
+
+            recognizer.LoadGrammar(grammaer);
+            recognizer.SetInputToDefaultAudioDevice();
+            recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+        }
+
+        private void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            string recognizedText = e.Result.Text;
+
+            contentRichTextBox.Document.Blocks.Add(new Paragraph(new Run(recognizedText)));
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -18,9 +43,19 @@ namespace NotesApp.View
             Application.Current.Shutdown();
         }
 
+        bool isRecognizing = false;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!isRecognizing)
+            {
+                recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                isRecognizing = true;
+            }
+            else
+            {
+                recognizer.RecognizeAsyncStop();
+                isRecognizing = false;
+            }
         }
 
         private void contentRichTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
