@@ -3,6 +3,7 @@ using System.Linq;
 using System.Speech.Recognition;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 
 namespace NotesApp.View
@@ -17,18 +18,18 @@ namespace NotesApp.View
         {
             InitializeComponent();
 
-            var currentCulture = (from r in SpeechRecognitionEngine.InstalledRecognizers()
-                                  where r.Culture.Equals(Thread.CurrentThread.CurrentCulture)
-                                  select r).FirstOrDefault();
-            recognizer = new SpeechRecognitionEngine(currentCulture);
+            //var currentCulture = (from r in SpeechRecognitionEngine.InstalledRecognizers()
+            //                      where r.Culture.Equals(Thread.CurrentThread.CurrentCulture)
+            //                      select r).FirstOrDefault();
+            //recognizer = new SpeechRecognitionEngine(currentCulture);
 
-            GrammarBuilder builder = new GrammarBuilder();
-            builder.AppendDictation();
-            Grammar grammaer = new Grammar(builder);
+            //GrammarBuilder builder = new GrammarBuilder();
+            //builder.AppendDictation();
+            //Grammar grammaer = new Grammar(builder);
 
-            recognizer.LoadGrammar(grammaer);
-            recognizer.SetInputToDefaultAudioDevice();
-            recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
+            //recognizer.LoadGrammar(grammaer);
+            //recognizer.SetInputToDefaultAudioDevice();
+            //recognizer.SpeechRecognized += Recognizer_SpeechRecognized;
         }
 
         private void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -43,18 +44,16 @@ namespace NotesApp.View
             Application.Current.Shutdown();
         }
 
-        bool isRecognizing = false;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!isRecognizing)
+            bool isButtonEnable = (sender as ToggleButton).IsChecked ?? false; // se for nulo atribui falso
+            if (isButtonEnable)
             {
                 recognizer.RecognizeAsync(RecognizeMode.Multiple);
-                isRecognizing = true;
             }
             else
             {
                 recognizer.RecognizeAsyncStop();
-                isRecognizing = false;
             }
         }
 
@@ -63,12 +62,26 @@ namespace NotesApp.View
             int character = (new TextRange(contentRichTextBox.Document.ContentStart, contentRichTextBox.Document.ContentEnd)).Text.Length;
 
             statusTextBlock.Text = $"Document length: {character} characters";
-
         }
 
         private void boldButton_Click(object sender, RoutedEventArgs e)
         {
-            contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Bold);
+            bool isButtonEnable = (sender as ToggleButton).IsChecked ?? false; // se for nulo atribui falso
+
+            if (isButtonEnable)
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Bold);
+            }
+            else
+            {
+                contentRichTextBox.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Normal);
+            }
+        }
+
+        private void contentRichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            var selectedState = contentRichTextBox.Selection.GetPropertyValue(Inline.FontWeightProperty);
+            boldButton.IsChecked = (selectedState != DependencyProperty.UnsetValue) && (selectedState.Equals(FontWeights.Bold));
         }
     }
 }

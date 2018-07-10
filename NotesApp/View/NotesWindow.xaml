@@ -44,8 +44,8 @@
         </ListView>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar>
-                <Button Content="Speech" Click="Button_Click"/>
-                <Button x:Name="boldButton" Content="B" FontWeight="Bold"  Click="boldButton_Click"/>
+                <ToggleButton Content="Speech" Click="Button_Click"/>
+                <ToggleButton x:Name="boldButton" Content="B" FontWeight="Bold"  Click="boldButton_Click" />
             </ToolBar>
         </ToolBarTray>
         <Grid>
@@ -54,7 +54,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="47*"/>
             </Grid.ColumnDefinitions>
-            <RichTextBox x:Name="contentRichTextBox" TextChanged="contentRichTextBox_TextChanged" Grid.ColumnSpan="3"/>
+            <RichTextBox x:Name="contentRichTextBox" TextChanged="contentRichTextBox_TextChanged" Grid.ColumnSpan="3" SelectionChanged="contentRichTextBox_SelectionChanged"/>
         </Grid>
 
     </DockPanel>
