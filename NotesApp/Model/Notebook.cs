@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,13 @@ namespace NotesApp.Model
         private int _id;
         private int _userId;
         private string _name;
-
+        [PrimaryKey, AutoIncrement]
         public int Id
         {
             get { return _id; }
             set { _id = value; OnPropertyChanged(); }
         }
-
+        [Indexed]
         public int Userid
         {
             get { return _userId; }

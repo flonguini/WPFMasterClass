@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,13 @@ namespace NotesApp.Model
         private string _fileLocation;
         private DateTime _createdTime;
 
+        [PrimaryKey, AutoIncrement]
         public int Id
         {
             get { return _id; }
             set { _id = value; OnPropertyChanged(); }
         }
-
+        [Indexed]
         public int NotebookId
         {
             get { return _notebookId; }
@@ -51,8 +53,5 @@ namespace NotesApp.Model
             get { return _fileLocation; }
             set { _fileLocation = value; OnPropertyChanged(); }
         }
-
-
-
     }
 }

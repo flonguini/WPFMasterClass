@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace NotesApp.Model
         private string _username;
         private string _email;
         private string _password;
-
+        [PrimaryKey, AutoIncrement]
         public int Id
         {
             get { return _id; }
