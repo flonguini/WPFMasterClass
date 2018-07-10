@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using WeatherMVVM.Model;
 
@@ -13,7 +10,7 @@ namespace WeatherMVVM
         public const string API_KEY = "42e2e4db0db214874223d3d73da630e3";
         public const string BASE_URL = "http://apiadvisor.climatempo.com.br/api/v1/weather/locale/3477/current?token={0}&id={1}";
 
-        public async Weather GetWeatherInformation(string cityName)
+        public async Task<Weather> GetWeatherInformationAsync(string cityName)
         {
             var result = new Weather();
 
@@ -23,6 +20,7 @@ namespace WeatherMVVM
             {
                 var response = await client.GetAsync(url);
                 string json = await response.Content.ReadAsStringAsync();
+                result = JsonConvert.DeserializeObject<Weather>(json);
             }
 
             return result;

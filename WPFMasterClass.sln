@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopContactsApp", "Deskt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FruitAI", "FruitAI\FruitAI.csproj", "{C6D81CD0-A9D5-46E9-91C1-78D3D5C44768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMVVM", "WeatherMVVM\WeatherMVVM.csproj", "{8DB8192B-151F-4815-BF5C-74F87835E5E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C6D81CD0-A9D5-46E9-91C1-78D3D5C44768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6D81CD0-A9D5-46E9-91C1-78D3D5C44768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6D81CD0-A9D5-46E9-91C1-78D3D5C44768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DB8192B-151F-4815-BF5C-74F87835E5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB8192B-151F-4815-BF5C-74F87835E5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB8192B-151F-4815-BF5C-74F87835E5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB8192B-151F-4815-BF5C-74F87835E5E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

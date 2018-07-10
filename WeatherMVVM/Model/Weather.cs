@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace WeatherMVVM.Model
 {
-    public class Data
+    public class Data : INotifyPropertyChanged
     {
         public double Temperature { get; set; }
         public string WindDirection { get; set; }
@@ -10,9 +11,16 @@ namespace WeatherMVVM.Model
         public int Humidity { get; set; }
         public string Condition { get; set; }
         public int Pressure { get; set; }
-        public string Icon { get; set; }
-        public int Sensation { get; set; }
-        public string Date { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName))
+            }
+        }
     }
 
     public class Weather
