@@ -6,46 +6,52 @@ using System.Threading.Tasks;
 
 namespace NotesApp.Model
 {
-    public class Note
+    public class Note : ModelBase
     {
         private int _id;
+        private int _notebookId;
+        private string _title;
+        private DateTime _updatedTime;
+        private string _fileLocation;
+        private DateTime _createdTime;
 
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
+            set { _id = value; OnPropertyChanged(); }
         }
-        private int _notebookId;
 
         public int NotebookId
         {
             get { return _notebookId; }
-            set { _notebookId = value; }
+            set { _notebookId = value; OnPropertyChanged(); }
         }
 
-        private string _title;
 
         public string Title
         {
             get { return _title; }
-            set { _title = value; }
+            set { _title = value; OnPropertyChanged(); }
         }
-
-        private DateTime _createdTime;
 
         public DateTime CreatedTime
         {
             get { return _createdTime; }
-            set { _createdTime = value; }
+            set { _createdTime = value; OnPropertyChanged(); }
         }
-
-        private DateTime _updatedTime;
-
-        public DateTime MyProperty
+ 
+        public DateTime UpdatedTime
         {
             get { return _updatedTime; }
-            set { _updatedTime = value; }
+            set { _updatedTime = value; OnPropertyChanged(); }
         }
+        
+        public string FileLocation
+        {
+            get { return _fileLocation; }
+            set { _fileLocation = value; OnPropertyChanged(); }
+        }
+
 
 
     }
