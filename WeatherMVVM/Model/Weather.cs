@@ -1,35 +1,138 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WeatherMVVM.Model
 {
-    public class Data : INotifyPropertyChanged
+    public class Data : WeatherBase
     {
-        public double Temperature { get; set; }
-        public string WindDirection { get; set; }
-        public int WindVelocity { get; set; }
-        public int Humidity { get; set; }
-        public string Condition { get; set; }
-        public int Pressure { get; set; }
+        #region Private fields
+        private double _temperature;
+        private string _windDirection;
+        private int _windVelocity;
+        private int _humidity;
+        private string _condition;
+        private int _pressure;
+        #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
+        #region Public properties
+        public double Temperature
         {
-            if (PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName))
+                return _temperature;
+            }
+            set
+            {
+                _temperature = value;
+                OnPropertyChanged();
             }
         }
+        public string WindDirection
+        {
+            get { return _windDirection; }
+            set
+            {
+                _windDirection = value;
+                OnPropertyChanged();
+            }
+        }
+        public int WindVelocity
+        {
+            get { return _windVelocity; }
+            set
+            {
+                _windVelocity = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Humidity
+        {
+            get { return _humidity; }
+            set
+            {
+                _humidity = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Condition
+        {
+            get { return _condition; }
+            set
+            {
+                _condition = value;
+                OnPropertyChanged();
+            }
+        }
+        public int Pressure
+        {
+            get { return _pressure; }
+            set
+            {
+                _pressure = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
     }
 
-    public class Weather
+    public class Weather : WeatherBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
-        public Data Data { get; set; }
+        #region Private fields
+        private int _id;
+        private string _name;
+        private string _state;
+        private string _country;
+        private Data _data;
+        #endregion
+
+        #region Public properties
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+        public string State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Country
+        {
+            get { return _country; }
+            set
+            {
+                _country = value;
+                OnPropertyChanged();
+            }
+        }
+        public Data Data
+        {
+            get { return _data; }
+            set
+            {
+                _data = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
     }
 
 }

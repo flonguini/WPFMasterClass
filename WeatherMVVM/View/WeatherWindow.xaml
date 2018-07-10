@@ -4,18 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherMVVM.View"
+        xmlns:vm="clr-namespace:WeatherMVVM.ViewModel"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="WeatherWindow" Height="450" Width="250">
-    <Grid>
-        <StackPanel Margin="10">
+
+    <Window.Resources>
+        <vm:WeatherViewModel x:Key="vm" />
+    </Window.Resources>
+    
+    <Grid DataContext="{StaticResource vm}">
+        <StackPanel Margin="10" DataContext="{Binding Weather}">
             <TextBox />
             <TextBlock Text="São Paulo" FontSize="20" FontWeight="Bold"/>
-            <TextBlock Text="21°C" FontSize="40" FontWeight="ExtraBold" Margin="0 30 0 0" />
-            <TextBlock Text="NW" FontSize="20" Margin="0 30 0 0" />
-            <TextBlock Text="2,6 m/s" FontSize="20" Margin="0 5 0 0" />
-            <TextBlock Text="45%" FontSize="20" Margin="0 5 0 0" />
-            <TextBlock Text="Poucas nuvens" FontSize="20" Margin="0 5 0 0" />
-            <TextBlock Text="106hPa" FontSize="20" Margin="0 5 0 0" />
+            <TextBlock Text="{Binding Data.Temperature}" FontSize="40" FontWeight="ExtraBold" 
+                       Margin="0 30 0 0" />
+            <TextBlock Text="{Binding Data.WindDirection}" FontSize="20" Margin="0 30 0 0" />
+            <TextBlock Text="{Binding Data.WindVelocity}" FontSize="20" Margin="0 5 0 0" />
+            <TextBlock Text="{Binding Data.Humidity}" FontSize="20" Margin="0 5 0 0" />
+            <TextBlock Text="{Binding Data.Condition}" FontSize="20" Margin="0 5 0 0" />
+            <TextBlock Text="{Binding Data.Pressure}" FontSize="20" Margin="0 5 0 0" />
+            <Button Content="Procurar" />
         </StackPanel>
     </Grid>
 </Window>

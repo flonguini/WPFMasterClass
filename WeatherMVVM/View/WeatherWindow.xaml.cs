@@ -22,6 +22,13 @@ namespace WeatherMVVM.View
         public WeatherWindow()
         {
             InitializeComponent();
+            // GetWeather(); usado para testar a API
         }
+
+        //Usado para testar a API
+        //private async void GetWeather()
+        //{
+        //    var weather = await WeatherAPIViewModel.GetWeatherInformationAsync("3477");
+        //}
     }
 }
