@@ -10,7 +10,7 @@ namespace NotesApp.ViewModel
 {
     public class DatabaseHelper
     {
-        private static readonly string dbFile = Path.Combine(Environment.CurrentDirectory, "notesDb.db3"); //static não precisa criar uma intância
+        public static readonly string dbFile = Path.Combine(Environment.CurrentDirectory, "notesDb.db3"); //static não precisa criar uma intância
 
         public static bool Insert<T>(T item)
         {

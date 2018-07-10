@@ -1,9 +1,5 @@
 ﻿using NotesApp.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace NotesApp.ViewModel.Commands
@@ -20,8 +16,8 @@ namespace NotesApp.ViewModel.Commands
 
         public bool CanExecute(object parameter)
         {
-            Notebook selectedNotebook = parameter as Notebook;
-            if (selectedNotebook != null)
+            //Notebook selectedNotebook = parameter as Notebook;
+            if (parameter is Notebook selectedNotebook)
             {
                 return true;
             }
